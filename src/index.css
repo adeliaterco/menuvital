@@ -1,0 +1,241 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap');
+
+@layer base {
+  :root {
+    --background: 120 20% 98%;
+    --foreground: 150 10% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 150 10% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 150 10% 15%;
+
+    --primary: 142 71% 45%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 142 40% 95%;
+    --secondary-foreground: 142 71% 35%;
+
+    --muted: 120 10% 96%;
+    --muted-foreground: 150 10% 45%;
+
+    --accent: 142 50% 90%;
+    --accent-foreground: 142 71% 30%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 142 20% 90%;
+    --input: 142 20% 90%;
+    --ring: 142 71% 45%;
+
+    --radius: 0.75rem;
+
+    --success: 142 71% 45%;
+    --success-foreground: 0 0% 100%;
+
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
+
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 150 10% 30%;
+    --sidebar-primary: 142 71% 45%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 142 50% 95%;
+    --sidebar-accent-foreground: 142 71% 30%;
+    --sidebar-border: 142 20% 92%;
+    --sidebar-ring: 142 71% 45%;
+  }
+
+  .dark {
+    --background: 150 20% 8%;
+    --foreground: 120 20% 98%;
+
+    --card: 150 15% 12%;
+    --card-foreground: 120 20% 98%;
+
+    --popover: 150 15% 12%;
+    --popover-foreground: 120 20% 98%;
+
+    --primary: 142 71% 45%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 150 15% 18%;
+    --secondary-foreground: 142 50% 70%;
+
+    --muted: 150 15% 18%;
+    --muted-foreground: 150 10% 60%;
+
+    --accent: 150 15% 20%;
+    --accent-foreground: 142 50% 70%;
+
+    --destructive: 0 62% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 150 15% 20%;
+    --input: 150 15% 20%;
+    --ring: 142 71% 45%;
+
+    --sidebar-background: 150 15% 10%;
+    --sidebar-foreground: 120 20% 90%;
+    --sidebar-primary: 142 71% 45%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 150 15% 18%;
+    --sidebar-accent-foreground: 142 50% 70%;
+    --sidebar-border: 150 15% 18%;
+    --sidebar-ring: 142 71% 45%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Nunito', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold tracking-tight;
+  }
+}
+
+@layer components {
+  .content-card {
+    @apply bg-card rounded-xl border border-border shadow-sm hover:shadow-md transition-all duration-200;
+  }
+
+  .section-header {
+    @apply text-2xl font-bold text-foreground mb-4;
+  }
+
+  .print-button {
+    @apply inline-flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg font-semibold hover:opacity-90 transition-opacity;
+  }
+
+  .nav-item {
+    @apply flex items-center gap-3 px-4 py-3 rounded-lg text-muted-foreground hover:bg-accent hover:text-accent-foreground transition-colors;
+  }
+
+  .nav-item-active {
+    @apply bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground;
+  }
+
+  .recipe-card {
+    @apply content-card p-4 cursor-pointer hover:border-primary;
+  }
+
+  .calorie-badge {
+    @apply inline-flex items-center px-2 py-1 bg-secondary text-secondary-foreground text-sm font-medium rounded-full;
+  }
+
+  .macro-pill {
+    @apply px-3 py-1 rounded-full text-xs font-semibold;
+  }
+
+  .macro-protein {
+    @apply bg-blue-100 text-blue-700;
+  }
+
+  .macro-carbs {
+    @apply bg-amber-100 text-amber-700;
+  }
+
+  .macro-fat {
+    @apply bg-purple-100 text-purple-700;
+  }
+
+  .favorite-button {
+    @apply p-2 rounded-full hover:bg-accent transition-colors;
+  }
+
+  .favorite-active {
+    @apply text-red-500;
+  }
+}
+
+/* Print Styles */
+@media print {
+  @page {
+    size: A4;
+    margin: 1.5cm;
+  }
+
+  body {
+    font-size: 12pt;
+    line-height: 1.5;
+    color: black !important;
+    background: white !important;
+  }
+
+  .no-print,
+  nav,
+  .sidebar,
+  .bottom-nav,
+  .print-button,
+  .favorite-button,
+  button:not(.print-visible),
+  .search-bar {
+    display: none !important;
+  }
+
+  .print-only {
+    display: block !important;
+  }
+
+  .content-card {
+    break-inside: avoid;
+    border: 1px solid #ccc !important;
+    box-shadow: none !important;
+    margin-bottom: 1rem;
+    page-break-inside: avoid;
+  }
+
+  h1, h2, h3 {
+    page-break-after: avoid;
+    color: black !important;
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  th, td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+  }
+
+  th {
+    background-color: #f0f0f0 !important;
+    font-weight: bold;
+  }
+
+  .recipe-card {
+    border: 1px solid #ddd !important;
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  a {
+    text-decoration: none;
+    color: black !important;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+.print-only {
+  display: none;
+}
